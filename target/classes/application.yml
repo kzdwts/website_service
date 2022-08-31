@@ -1,0 +1,16 @@
+server:
+  port: 8080
+
+spring:
+  mail:
+    host: smtp.126.com
+    username: kangyong_wts@126.com
+    password: FGFQAOCJLNUERWBM
+    properties:
+      mail:
+      smtp:
+      socketFactory:
+      class: javax.net.ssl.SSLSocketFactory
+    #         ssl:
+    #           enable :true
+    default-encoding: utf-8
