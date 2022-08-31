@@ -14,3 +14,5 @@ spring:
     #         ssl:
     #           enable :true
     default-encoding: utf-8
+website:
+  to_email: 1249744730@qq.com

@@ -22,8 +22,10 @@ public class MailServiceTest {
     private MailService mailService;
 
     @Test
-    public void sendMail1() {
+    public void sendMail1() throws InterruptedException {
         mailService.sendMail(1, "测试发送邮件");
+        System.out.println("SUCCESS");
+        Thread.sleep(50000);
     }
 
 }

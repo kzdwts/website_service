@@ -3,6 +3,7 @@ package top.ky.website.service.impl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.mail.MailProperties;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -33,6 +34,9 @@ public class MailServiceImpl implements MailService {
     @Autowired
     private MailProperties mailProperties;
 
+    @Value("${website.to_email}")
+    private String toEmail;
+
     /**
      * 发送简单的邮件
      *
@@ -50,7 +54,7 @@ public class MailServiceImpl implements MailService {
 
         message.setSubject("新消息提醒");
         message.setText(data);
-        message.setTo("2231571414@qq.com");
+        message.setTo(toEmail);
         message.setFrom(mailProperties.getUsername());
         javaMailSender.send(message);
         log.info("===发送短信：END===");
