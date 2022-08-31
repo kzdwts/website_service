@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.mail.MailProperties;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import top.ky.website.controller.PageController;
 import top.ky.website.service.MailService;
@@ -41,6 +42,7 @@ public class MailServiceImpl implements MailService {
      * @author Kang Yong
      * @date 2022/8/30
      */
+    @Async
     @Override
     public void sendMail(Integer type, String data) {
         //邮件设置
