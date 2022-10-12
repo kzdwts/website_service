@@ -29,6 +29,7 @@ public class PageController {
     public RespResult save(@RequestBody PageData pageData) {
         log.info("===接收到请求：{}", pageData);
         pageService.sendSimple(pageData);
+        log.info("===异步发送结束");
         return RespResult.ok();
     }
 
