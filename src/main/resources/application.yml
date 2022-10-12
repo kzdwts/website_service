@@ -4,8 +4,8 @@ server:
 spring:
   mail:
     host: smtp.126.com
-    username: kangyong_wts@126.com
-    password: FGFQAOCJLNUERWBM
+    username: test012022@126.com
+    password: BBNUUAZUORGOLLIA
     properties:
       mail:
       smtp:
@@ -15,4 +15,4 @@ spring:
     #           enable :true
     default-encoding: utf-8
 website:
-  to_email: 1249744730@qq.com
+  to_email: info@cz-robots.com
