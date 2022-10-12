@@ -6,6 +6,7 @@ spring:
     host: smtp.126.com
     username: test012022@126.com
     password: BBNUUAZUORGOLLIA
+    port: 465
     properties:
       mail:
       smtp:
