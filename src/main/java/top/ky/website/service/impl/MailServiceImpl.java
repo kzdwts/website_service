@@ -1,5 +1,6 @@
 package top.ky.website.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import top.ky.website.service.MailService;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.util.Map;
 
 /**
  * 邮件发送
@@ -67,7 +69,7 @@ public class MailServiceImpl implements MailService {
      * @date 2022/8/30
      */
     @Override
-    public void complexMail() throws MessagingException {
+    public void complexMail(Integer type, String data) throws MessagingException {
         //1、创建一个复杂的邮件
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage);
@@ -76,14 +78,34 @@ public class MailServiceImpl implements MailService {
         //文本中添加图片
 //        helper.addInline("image1",new FileSystemResource("D:\\images\\spring\\1.jpg"));
         //邮件内容
-        helper.setText("三生石博客<a href='https://www.jiazhibo.top'>访问我的博客</a>", true);
-        helper.setTo("1271421134@qq.com");
-        helper.setFrom("1271421134@qq.com");
+        helper.setText(this.structHtml(data), true);
+        helper.setTo(toEmail);
+        helper.setFrom(mailProperties.getUsername());
         //附件添加图片
 //        helper.addAttachment("1.jpg",new File("D:\\images\\spring\\1.jpg"));
         //附件添加word文档
 //        helper.addAttachment("哈哈哈.docx",new File("D:\\images\\spring\\哈哈哈.docx"));
 
         javaMailSender.send(mimeMessage);
+    }
+
+    private String structHtml(String data) {
+        // 数据
+        JSONObject json = JSONObject.parseObject(data);
+
+        // 拼接
+        StringBuilder sb = new StringBuilder();
+        sb.append("<table border=\"1\" style=\"border-collapse: collapse;\">");
+        // 遍历拼接
+        for (Map.Entry<String, Object> entry : json.entrySet()) {
+            log.info("{}->{}", entry.getKey(), entry.getValue());
+            sb.append("<tr>");
+            sb.append("<th>" + entry.getKey() + "</th>");
+            sb.append("<td>" + entry.getValue() + "</td>");
+            sb.append("</tr>");
+        }
+        sb.append("</table>");
+
+        return sb.toString();
     }
 }

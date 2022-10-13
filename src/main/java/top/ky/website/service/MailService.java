@@ -12,5 +12,5 @@ import javax.mail.MessagingException;
 public interface MailService {
     void sendMail(Integer type, String data);
 
-    void complexMail() throws MessagingException;
+    void complexMail(Integer type, String data) throws MessagingException;
 }
