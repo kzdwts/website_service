@@ -20,6 +20,17 @@ spring:
         class: javax.net.ssl.SSLSocketFactory
     #         ssl:
     #           enable :true
+
+# shutdown config
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: shutdown
+
 website:
   to_email: info@cz-robots.com
 #  to_email: 2231571414@qq.com
