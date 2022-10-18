@@ -95,6 +95,8 @@ public class MailServiceImpl implements MailService {
 
         // 拼接
         StringBuilder sb = new StringBuilder();
+        sb.append("<div>");
+        sb.append("<h2>New feedback!</h2>");
         sb.append("<table border=\"1\" style=\"border-collapse: collapse;\">");
         // 遍历拼接
         for (Map.Entry<String, Object> entry : json.entrySet()) {
@@ -105,6 +107,11 @@ public class MailServiceImpl implements MailService {
             sb.append("</tr>");
         }
         sb.append("</table>");
+        sb.append("<div>");
+        sb.append("<h3>From</h3>");
+        sb.append("<a>cz-robots.com</a>");
+        sb.append("</div>");
+        sb.append("</div>");
 
         return sb.toString();
     }
